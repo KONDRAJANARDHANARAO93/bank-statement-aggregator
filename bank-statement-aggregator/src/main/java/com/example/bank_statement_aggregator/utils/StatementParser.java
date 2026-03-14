@@ -8,6 +8,7 @@ import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.List;
 
+
 public class StatementParser {
 
     public static List<Transaction> parseTransactions(String filePath, BankStatement statement) {

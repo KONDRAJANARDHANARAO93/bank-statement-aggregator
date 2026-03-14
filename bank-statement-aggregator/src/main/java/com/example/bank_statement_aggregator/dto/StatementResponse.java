@@ -10,5 +10,4 @@ public class StatementResponse {
     private String filePath;
     private Long userId;
     private Long companyId;
-
 }
