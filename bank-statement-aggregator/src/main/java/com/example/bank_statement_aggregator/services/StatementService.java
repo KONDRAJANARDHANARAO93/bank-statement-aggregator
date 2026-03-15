@@ -1,5 +1,6 @@
 package com.example.bank_statement_aggregator.services;
 
+import com.example.bank_statement_aggregator.dto.TransactionResponse;
 import com.example.bank_statement_aggregator.models.BankStatement;
 import com.example.bank_statement_aggregator.models.Transaction;
 import com.example.bank_statement_aggregator.models.User;
@@ -61,10 +62,14 @@ public class StatementService
 
         return savedStatement;
     }
-    public List<BankStatement> getStatementsByUser(Long userId) {
+    public List<BankStatement> getStatementsByUser(Long userId)
+    {
         return bankStatementRepository.findByUserUserId(userId);
     }
 
+   public  List<Transaction> getTransactionByStatement(long statementId){
+        return transactionRepository.findByBankStatementStatementId(statementId);
+   }
 
 
 }
