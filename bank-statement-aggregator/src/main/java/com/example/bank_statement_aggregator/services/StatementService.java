@@ -74,10 +74,7 @@ public class StatementService
     }
 
    public  List<Transaction> getTransactionByStatement(long statementId){
-        Optional<Transaction> transactionOptional=transactionRepository.findById(statementId);
-        if(transactionOptional.isEmpty()){
-            throw new RuntimeException("Transactions are not found");
-        }
+
         return transactionRepository.findByBankStatementStatementId(statementId);
    }
 
