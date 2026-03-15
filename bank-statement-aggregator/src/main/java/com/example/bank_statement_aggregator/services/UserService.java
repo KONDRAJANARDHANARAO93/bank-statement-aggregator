@@ -2,6 +2,7 @@ package com.example.bank_statement_aggregator.services;
 
 import com.example.bank_statement_aggregator.dto.UserLoginRequest;
 import com.example.bank_statement_aggregator.dto.UserRegisterRequest;
+import com.example.bank_statement_aggregator.exception.ResourceNotFoundException;
 import com.example.bank_statement_aggregator.models.Company;
 import com.example.bank_statement_aggregator.models.User;
 import com.example.bank_statement_aggregator.repositories.CompanyRepository;
@@ -31,7 +32,7 @@ public class UserService {
         Optional<Company> companyOptional = companyRepository.findById(request.getCompanyId());
 
         if (companyOptional.isEmpty()) {
-            throw new RuntimeException("Company not found");
+            throw new ResourceNotFoundException("User not found");
         }
 
         Company company = companyOptional.get();
