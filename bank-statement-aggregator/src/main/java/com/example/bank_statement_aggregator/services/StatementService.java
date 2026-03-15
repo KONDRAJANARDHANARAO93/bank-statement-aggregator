@@ -1,6 +1,7 @@
 package com.example.bank_statement_aggregator.services;
 
 import com.example.bank_statement_aggregator.dto.TransactionResponse;
+import com.example.bank_statement_aggregator.exception.ResourceNotFoundException;
 import com.example.bank_statement_aggregator.models.BankStatement;
 import com.example.bank_statement_aggregator.models.Transaction;
 import com.example.bank_statement_aggregator.models.User;
@@ -64,10 +65,19 @@ public class StatementService
     }
     public List<BankStatement> getStatementsByUser(Long userId)
     {
+        Optional<User> userOptional = userRepository.findById(userId);
+
+        if (userOptional.isEmpty()) {
+            throw new ResourceNotFoundException("User not found");
+        }
         return bankStatementRepository.findByUserUserId(userId);
     }
 
    public  List<Transaction> getTransactionByStatement(long statementId){
+        Optional<Transaction> transactionOptional=transactionRepository.findById(statementId);
+        if(transactionOptional.isEmpty()){
+            throw new RuntimeException("Transactions are not found");
+        }
         return transactionRepository.findByBankStatementStatementId(statementId);
    }
 
